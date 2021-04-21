@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Video calling</title>
+</head>
+<body>
+<div class="container">
+  My user id: <div id="userId"></div>
+  Remote camera: <video id="remoteVideo" playsinline autoplay></video>
+  My camera: <video id="localVideo" playsinline autoplay muted></video>
+
+  <div id="usersList">
+    No users connected
+  </div>
+  <button id="call">Call</button>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+<script src="index.js"></script>
+</body>
+</html>
