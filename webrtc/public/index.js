@@ -55,8 +55,11 @@ let selectedUser;
 /* create a relay server object. We talk to our peer through this server. */
 const relayServer = new RelayServer();
 
-relayServer.onSocketConnection(() => {
+relayServer.onSocketConnection(async () => {
     document.querySelector('#userId').innerHTML = `My user id is ${relayServer.socket.id}`;
+
+    const resp = await fetch('/connected-users');
+    onUpdateUserList(await resp.json());
 });
 
 

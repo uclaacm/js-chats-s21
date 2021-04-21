@@ -14,6 +14,10 @@ io.on('connection', socket => {
 
 let connectedUsers = []; 
 
+app.get('/connected-users', (req, res) => {
+    res.json({ userIds: connectedUsers });
+});
+
 io.on('connection', socket => {
     connectedUsers.push(socket.id);
     console.log(connectedUsers);
