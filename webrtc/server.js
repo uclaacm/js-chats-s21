@@ -20,7 +20,6 @@ app.get('/connected-users', (req, res) => {
 
 io.on('connection', socket => {
     connectedUsers.push(socket.id);
-    console.log(connectedUsers);
     socket.broadcast.emit('update-user-list', { userIds: connectedUsers });
     socket.on('disconnect', () => {
         connectedUsers = connectedUsers.filter(user => user !== socket.id);
@@ -28,7 +27,6 @@ io.on('connection', socket => {
     });
 
     socket.on('mediaOffer', data => {
-        console.log(data);
         socket.to(data.to).emit('mediaOffer', {
             from: data.from,
             offer: data.offer
