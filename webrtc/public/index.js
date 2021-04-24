@@ -132,6 +132,10 @@ callButton.addEventListener('click', async () => {
 
 /* 
  * function to execute when another user call us.
+ *
+ * `data` contains two keys: "offer" and "from". "offer" contains the offer
+ * object and "from" is the ID of the caller.
+ *
  * This function is callee side.
  **/
 relayServer.onPeerSendMediaOffer(async data => {
@@ -155,6 +159,9 @@ relayServer.onPeerSendMediaOffer(async data => {
 
 /*
  * function to execute when callee agreed to call and send us their video/audio info
+ *
+ * `data` contains the key "answer" that holds the answer object from callee.
+ *
  * This function is caller side.
  **/
 relayServer.onPeerSendMediaAnswer(async data => {
