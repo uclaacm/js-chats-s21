@@ -3,12 +3,21 @@
 <head>
   <meta charset="utf-8">
   <title>Video calling</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="container">
-  My user id: <div id="userId"></div>
-  Remote camera: <video id="remoteVideo" playsinline autoplay></video>
-  My camera: <video id="localVideo" playsinline autoplay muted></video>
+  <div id="userId"></div>
+  <div class="videos">
+    <div class="videoFeed">
+      <p>Remote video:</p>
+      <video id="remoteVideo" playsinline autoplay></video>
+    </div>
+    <div class="videoFeed">
+      <p>My video:</p>
+      <video id="localVideo" playsinline autoplay muted></video>
+    </div>
+  </div>
 
   <div id="usersList">
     No users connected
