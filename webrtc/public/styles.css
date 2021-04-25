@@ -1,0 +1,33 @@
+.container {
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.videos {
+  display: flex;
+}
+
+.videoFeed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.videoFeed p {
+  font-size: 20px;
+}
+
+video {
+  width: 400px;
+  height: 100%;
+  border: 1px solid black;
+  background-color: rgb(240, 240, 240);
+  border-radius: 5px;
+}
+
+#usersList {
+  padding: 10px;
+}

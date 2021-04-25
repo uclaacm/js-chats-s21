@@ -32,7 +32,7 @@ class RelayServer {
         console.log('sending candidate', candidate);
         this.socket.emit('iceCandidate', {
             to: peerId,
-            candidate: event.candidate
+            candidate: candidate
         });
     }
 
@@ -68,10 +68,28 @@ const onUpdateUserList = ({ userIds }) => {
     const usersToDisplay = userIds.filter(id => id !== relayServer.socket.id);
     usersList.innerHTML = '';
 
+    if (Object.keys(userIds).length === 1) {
+        usersList.innerHTML = 'No other users connected';
+        return;
+    }
+
+    usersList.innerHTML = 'Select a user to call:';
+
     usersToDisplay.forEach(user => {
         const userItem = document.createElement('div');
-        userItem.innerHTML = user;
+        const userInput = document.createElement('input');
+        const userLabel = document.createElement('label');
+
         userItem.className = 'user-item';
+        userItem.appendChild(userInput);
+        userItem.appendChild(userLabel);
+
+        userInput.setAttribute('type', 'radio');
+        userInput.setAttribute('id', user);
+        userInput.setAttribute('name', 'users');
+        userInput.setAttribute('value', user);
+        userLabel.setAttribute('for', user);
+        userLabel.innerHTML = user;
 
         userItem.addEventListener('click', () => {
             selectedUser = user;
@@ -118,7 +136,12 @@ const callButton = document.querySelector('#call');
  * This function is caller side.
  **/
 callButton.addEventListener('click', async () => {
-    callButton.disabled = true; 
+    if (!selectedUser) {
+        alert("You must select a user ID to call");
+        return;
+    }
+
+    callButton.disabled = true;
 
     // create a connection offer, which contains our video/audio info
     const localOffer = await rtcConnection.createOffer();
@@ -205,6 +228,3 @@ rtcConnection.addEventListener('track', event => {
     // put our peer's stream onto our video
     document.querySelector('#remoteVideo').srcObject = stream;
 });
-
-
-
