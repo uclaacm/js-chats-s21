@@ -339,9 +339,15 @@ async function findAllPrimes(max) {
 > * What if we end up calling `initializeWasm` many, many times?
 
 We tried to fix some of these problems and make our code more robust, in
-primes-direct-robust.js, which unfortunately complicates the code quite a bit.
-But this exposes some of the problems with using WebAssembly: if you are
-calling into C functions from JavaScript, you would basically be forced to take
-on many of the problems in C that we tried to solve by using WebAssembly. In
-other words, it is good practice to do as much as possible in the source
-language, and to **minimize the interface** between JavaScript and WebAssembly.
+[primes-direct-robust.js](https://github.com/uclaacm/js-chats-s21/blob/main/webassembly/primes-direct-robust.js),
+which unfortunately complicates the code quite a bit.
+
+## Conclusion
+
+Our demo today exposes some of the problems with using WebAssembly. If you are
+calling into WebAssembly functions from JavaScript, many times you would be
+forced to essentially write code in that other language (C, C++, or anything
+else) but in JavaScript, and to deal with the same probelms as the original
+language (e.g., memory allocation and cleanup). We think it is good practice to
+do **as much as possible** in the source/compiled language, and to **minimize
+the interface** between JavaScript and WebAssembly.
